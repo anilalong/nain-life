@@ -117,3 +117,122 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing App with Brushes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #aec6cf;
+        }
+        #drawingCanvas {
+            border: 2px solid #333;
+            margin-top: 20px;
+            background-color: white;
+        }
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .toolbar button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .paint-brush {
+            background-color: #4CAF50;
+        }
+        .pencil {
+            background-color: #555;
+        }
+        .clear-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Drawing App with Brushes</h1>
+
+    <!-- Brush Tools -->
+    <div class="toolbar">
+        <button id="paintBrush" class="paint-brush">Paint Brush</button>
+        <button id="pencil" class="pencil">Pencil</button>
+    </div>
+
+    <!-- Canvas and Clear Button -->
+    <canvas id="drawingCanvas" width="600" height="400"></canvas>
+    <button id="clearButton" class="clear-button">Clear Canvas</button>
+
+    <script>
+        // Get elements from the HTML
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        const paintBrushButton = document.getElementById('paintBrush');
+        const pencilButton = document.getElementById('pencil');
+        const clearButton = document.getElementById('clearButton');
+
+        let isDrawing = false;
+
+        // Set default brush to pencil (small, thin strokes)
+        ctx.lineWidth = 2; // Thin stroke for pencil
+        ctx.strokeStyle = 'black'; // Default color is black
+
+        // Brush button functions
+        paintBrushButton.addEventListener('click', function() {
+            ctx.lineWidth = 10; // Thick stroke for paint brush
+        });
+
+        pencilButton.addEventListener('click', function() {
+            ctx.lineWidth = 2; // Thin stroke for pencil
+        });
+
+        // Drawing functionality
+        canvas.addEventListener('mousedown', function(event) {
+            isDrawing = true;
+            ctx.beginPath();
+            ctx.moveTo(event.offsetX, event.offsetY);
+        });
+
+        canvas.addEventListener('mousemove', function(event) {
+            if (isDrawing) {
+                ctx.lineTo(event.offsetX, event.offsetY);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            isDrawing = false;
+        });
+
+        canvas.addEventListener('mouseout', function() {
+            isDrawing = false;
+        });
+
+        // Clear the canvas
+        clearButton.addEventListener('click', function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
+
+</body>
+</html>
