@@ -17,20 +17,14 @@
         }
         .container {
             text-align: center;
-            width: 400px;
             background-color: #fff;
             border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            box-sizing: border-box;
-        }
-        h1 {
-            font-size: 1.5em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
         .button {
-            width: 100%;
-            padding: 10px;
+            padding: 10px 20px;
             margin: 10px 0;
             background-color: #4CAF50;
             color: white;
@@ -55,7 +49,6 @@
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 1em;
             cursor: pointer;
         }
         #clearButton:hover {
@@ -73,49 +66,53 @@
 
     <!-- Canvas and Clear Button -->
     <canvas id="drawingCanvas" width="600" height="400"></canvas>
-    <button id="clearButton" onclick="clearCanvas()">Clear Canvas</button>
+    <button id="clearButton">Clear Canvas</button>
 
     <script>
-        // Grab elements from the HTML
-        const canvas = document.getElementById('drawingCanvas');
-        const ctx = canvas.getContext('2d');
+        // Get elements from the page
         const startDrawingButton = document.getElementById('startDrawingButton');
+        const canvas = document.getElementById('drawingCanvas');
         const clearButton = document.getElementById('clearButton');
-
+        const ctx = canvas.getContext('2d');
+        
         let isDrawing = false;
 
-        // Show the canvas and clear button when the start drawing button is clicked
-        startDrawingButton.addEventListener('click', () => {
+        // Show canvas and clear button when start drawing button is clicked
+        startDrawingButton.onclick = () => {
             canvas.style.display = 'block';
             clearButton.style.display = 'block';
-        });
+        };
 
-        // Start drawing on mousedown
+        // Mouse events to handle drawing
         canvas.addEventListener('mousedown', (event) => {
             isDrawing = true;
-            ctx.beginPath(); // Begin a new path for drawing
-            ctx.moveTo(event.offsetX, event.offsetY); // Move to the start point
+            ctx.beginPath();
+            ctx.moveTo(event.offsetX, event.offsetY);
         });
 
-        // Stop drawing on mouseup or when mouse leaves the canvas
-        canvas.addEventListener('mouseup', () => isDrawing = false);
-        canvas.addEventListener('mouseout', () => isDrawing = false);
-
-        // Draw on mousemove, only if isDrawing is true
         canvas.addEventListener('mousemove', (event) => {
             if (isDrawing) {
-                ctx.lineTo(event.offsetX, event.offsetY); // Draw to the current point
+                ctx.lineTo(event.offsetX, event.offsetY);
                 ctx.strokeStyle = 'black';
                 ctx.lineWidth = 3;
                 ctx.lineCap = 'round';
-                ctx.stroke(); // Apply the stroke
+                ctx.stroke();
             }
         });
 
-        // Clear the canvas when the clear button is clicked
-        function clearCanvas() {
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+            ctx.beginPath();
+        });
+
+        canvas.addEventListener('mouseout', () => {
+            isDrawing = false;
+        });
+
+        // Clear the canvas when clear button is clicked
+        clearButton.onclick = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+        };
     </script>
 
 </body>
