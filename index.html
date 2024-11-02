@@ -3,71 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Page</title>
+    <title>Drawing App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #aec6cf; /* Pastel blue background */
-        }
-        .content {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .creator-info {
             display: flex;
             align-items: center;
-            gap: 20px;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #aec6cf; /* Pastel blue background color */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 90vw; /* Very wide, 90% of the viewport width */
+            height: 600px; /* Adjust height if needed */
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            box-sizing: border-box;
         }
-        .creator-info img {
-            width: 150px;
-            height: auto;
-            border-radius: 50%;
-            border: 2px solid #333;
-            object-fit: cover;
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
         }
-        .creator-info-text {
-            font-size: 1.1em;
-            color: #333;
-        }
-        .back-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
             background-color: #4CAF50;
             color: white;
-            border: none;
-            border-radius: 5px;
             text-decoration: none;
-            font-size: 1em;
+            border-radius: 5px;
         }
-        .back-button:hover {
+        .button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-
-    <div class="content">
-        <div class="creator-info">
-            <!-- Replace 'naina.jpg' with the actual path to the uploaded image -->
-            <img src="naina.jpg" alt="Naina, the creator">
-            <div class="creator-info-text">
-                <p><strong>Naina (AKA CREATOR)</strong> made this website 6+ for children and adults! You can draw whatever you want! IT'S AMAZING HOW A 9-YEAR-OLD MADE IT!</p>
-            </div>
-        </div>
-        <a href="index.html" class="back-button">Go Back</a>
+    <div class="container">
+        <h1>Hi! I'm Naina. Let's get drawing, shall we?</h1>
+        <a href="#" class="button">Click Here to Start Drawing!</a>
+        <a href="instructions.html" class="button">Instructions</a>
+        <a href="#" class="button">Info</a>
     </div>
-
 </body>
 </html>
-<style>
-    body {
+
