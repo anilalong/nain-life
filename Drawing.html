@@ -11,7 +11,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
             background-color: #aec6cf;
         }
@@ -21,7 +21,6 @@
             border: 1px solid #ccc;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
         .button {
             padding: 10px 20px;
@@ -66,53 +65,53 @@
 
     <!-- Canvas and Clear Button -->
     <canvas id="drawingCanvas" width="600" height="400"></canvas>
-    <button id="clearButton">Clear Canvas</button>
+    <button id="clearButton" class="button">Clear Canvas</button>
 
     <script>
-        // Get elements from the page
+        // Grabbing elements from the HTML
         const startDrawingButton = document.getElementById('startDrawingButton');
         const canvas = document.getElementById('drawingCanvas');
         const clearButton = document.getElementById('clearButton');
         const ctx = canvas.getContext('2d');
-        
+
         let isDrawing = false;
 
-        // Show canvas and clear button when start drawing button is clicked
-        startDrawingButton.onclick = () => {
+        // Show the canvas and clear button when "Start Drawing" button is clicked
+        startDrawingButton.addEventListener('click', function() {
             canvas.style.display = 'block';
             clearButton.style.display = 'block';
-        };
-
-        // Mouse events to handle drawing
-        canvas.addEventListener('mousedown', (event) => {
-            isDrawing = true;
-            ctx.beginPath();
-            ctx.moveTo(event.offsetX, event.offsetY);
         });
 
-        canvas.addEventListener('mousemove', (event) => {
+        // Drawing logic
+        canvas.addEventListener('mousedown', function(event) {
+            isDrawing = true;
+            ctx.beginPath(); // Begin a new path for drawing
+            ctx.moveTo(event.offsetX, event.offsetY); // Move to the start point
+        });
+
+        canvas.addEventListener('mousemove', function(event) {
             if (isDrawing) {
-                ctx.lineTo(event.offsetX, event.offsetY);
+                ctx.lineTo(event.offsetX, event.offsetY); // Draw to the current point
                 ctx.strokeStyle = 'black';
                 ctx.lineWidth = 3;
                 ctx.lineCap = 'round';
-                ctx.stroke();
+                ctx.stroke(); // Apply the stroke
             }
         });
 
-        canvas.addEventListener('mouseup', () => {
+        canvas.addEventListener('mouseup', function() {
             isDrawing = false;
-            ctx.beginPath();
+            ctx.closePath();
         });
 
-        canvas.addEventListener('mouseout', () => {
+        canvas.addEventListener('mouseout', function() {
             isDrawing = false;
         });
 
-        // Clear the canvas when clear button is clicked
-        clearButton.onclick = () => {
+        // Clear the canvas when the "Clear Canvas" button is clicked
+        clearButton.addEventListener('click', function() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-        };
+        });
     </script>
 
 </body>
