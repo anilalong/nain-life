@@ -12,7 +12,7 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #aec6cf; /* Pastel blue background color */
+            background-color: #aec6cf;
             flex-direction: column;
         }
         .container {
@@ -73,56 +73,16 @@
 <body>
     <div class="container">
         <h1>Hi! I'm Naina. Let's get drawing, shall we?</h1>
-        <button onclick="showCanvas()" class="button">Click Here to Start Drawing!</button>
+        <button id="startDrawingButton" class="button">Click Here to Start Drawing!</button>
         <a href="instructions.html" class="button">Instructions</a>
         <a href="#" class="button">Info</a>
     </div>
 
     <!-- Drawing Canvas and Clear Button -->
     <canvas id="drawingCanvas" width="600" height="400"></canvas>
-    <button class="clear-button" onclick="clearCanvas()">Clear Canvas</button>
+    <button id="clearButton" class="clear-button">Clear Canvas</button>
 
     <script>
+        // Select elements
         const canvas = document.getElementById('drawingCanvas');
-        const ctx = canvas.getContext('2d');
-        let drawing = false;
-
-        function showCanvas() {
-            // Display the canvas and clear button
-            canvas.style.display = 'block';
-            document.querySelector('.clear-button').style.display = 'block';
-        }
-
-        canvas.addEventListener('mousedown', startDrawing);
-        canvas.addEventListener('mouseup', stopDrawing);
-        canvas.addEventListener('mousemove', draw);
-
-        function startDrawing(event) {
-            drawing = true;
-            draw(event); // Start drawing immediately
-        }
-
-        function stopDrawing() {
-            drawing = false;
-            ctx.beginPath(); // Reset the path for new lines
-        }
-
-        function draw(event) {
-            if (!drawing) return;
-
-            ctx.lineWidth = 3; // Thickness of the line
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = 'black'; // Color of the line
-
-            ctx.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-        }
-
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-    </script>
-</body>
-</html>
+        const ctx = canvas.getContext('2
