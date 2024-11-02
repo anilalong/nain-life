@@ -73,16 +73,65 @@
 <body>
     <div class="container">
         <h1>Hi! I'm Naina. Let's get drawing, shall we?</h1>
-        <button id="startDrawingButton" class="button">Click Here to Start Drawing!</button>
+        <button id="showCanvasButton" class="button">Click Here to Start Drawing!</button>
         <a href="instructions.html" class="button">Instructions</a>
         <a href="#" class="button">Info</a>
     </div>
 
     <!-- Drawing Canvas and Clear Button -->
     <canvas id="drawingCanvas" width="600" height="400"></canvas>
-    <button id="clearButton" class="clear-button">Clear Canvas</button>
+    <button id="clearButton" class="clear-button" onclick="clearCanvas()">Clear Canvas</button>
 
     <script>
-        // Select elements
         const canvas = document.getElementById('drawingCanvas');
-        const ctx = canvas.getContext('2
+        const ctx = canvas.getContext('2d');
+        const showCanvasButton = document.getElementById('showCanvasButton');
+        const clearButton = document.getElementById('clearButton');
+        let drawing = false;
+
+        // Show the canvas and clear button when the "Start Drawing" button is clicked
+        showCanvasButton.addEventListener('click', function() {
+            canvas.style.display = 'block';
+            clearButton.style.display = 'block';
+        });
+
+        // Event listeners for drawing
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mousemove', draw);
+
+        function startDrawing(event) {
+            drawing = true;
+            draw(event); // Start drawing immediately
+        }
+
+        function stopDrawing() {
+            drawing = false;
+            ctx.beginPath(); // Reset the path for new lines
+        }
+
+        function draw(event) {
+            if (!drawing) return;
+
+            // Adjust for canvas position
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = 'black';
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+</body>
+</html>
+
