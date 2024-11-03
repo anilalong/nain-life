@@ -1,5 +1,5 @@
 DrawingApp/
 ├── index.html         # Main HTML file
-├── info.html          # Info page (if you have one)
+├── info.html          # Info page 
 ├── images/            # Folder for images
 │   └── naina.jpg      # Image of Naina
