@@ -184,5 +184,19 @@
             document.body.classList.toggle("open");
         };
     </script>
+    <script>
+        document.querySelectorAll('.confetti').forEach((confetti, index) => {
+            const randomLeft = Math.random() * 100;
+            const randomDelay = -(Math.random() * 5);
+            confetti.style.left = `${randomLeft}%`;
+            confetti.style.animationDelay = `${randomDelay}s`;
+        });
+
+        var openBtn = document.querySelector(".js-card-opener");
+        openBtn.onclick = function() {
+            document.body.classList.toggle("open");
+        };
+    </script>
+    
 </body>
 </html>
