@@ -111,7 +111,7 @@
         }
 
         body.open .button-container {
-            transform: rotate3d(0, 1, 0, 170deg);
+            transform: rotate3d(0, 1, 0, 180deg);
             opacity: 1;
             visibility: visible;
             transition-delay: 1s;
@@ -189,6 +189,77 @@
             transform-origin: left top;
         }
 
+        .card__panel--inside-right {
+            border-left: none;
+            background: #fff;
+            transform: rotate3d(0, 1, 0, 0deg);
+            z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        
+        .message-container {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .custom-message {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #ffccc4;
+            border-radius: 15px;
+            font-family: "Delius Swash Caps", cursive;
+            font-size: 18px;
+            resize: none;
+            background-color: #fff8f7;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .custom-message:focus {
+            outline: none;
+            border-color: #ff9a91;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .custom-message::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .default-message {
+            margin-top: auto;
+            font-size: 24px;
+            color: #333;
+        }
+        
+        /* Make the signature elements closer together */
+        .message-container p {
+            margin: 5px 0;
+        }
+        
+        /* Add some animation when the card opens */
+        .custom-message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition-delay: 0.5s;
+        }
+        
+        body.open .custom-message {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @keyframes confetti {
             0% { transform: rotateZ(15deg) rotateY(0deg) translate(0, 0); }
             25% { transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh); }
@@ -262,9 +333,11 @@
                 </div>
             </div>
             <div class="card__panel card__panel--inside-right">
-                <p>Have a hot and spicy birthday!</p>
-                <p><small>Hope your day is full of fun & flavor!</small></p>
-                <p>❤️ Your Friend</p>
+                <div class="message-container">
+                    <textarea id="customMessage" class="custom-message" 
+                        placeholder="Write your special birthday message here..."
+                    ></textarea>
+                </div>
             </div>
         </div>
     </div>
