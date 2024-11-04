@@ -1,0 +1,419 @@
+<html>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap");
+
+$transition-delay: 1s;
+$card-bg: #e66288;
+$card-bg-dark: darken($card-bg, 5%);
+
+body {
+  font-family: "Delius Swash Caps", cursive;
+  font-size: 20px;
+  padding-top:100px;
+  display: grid;
+  place-items: center;
+  background: #eee;
+  text-align: center;
+}
+
+h1,
+h3 {
+  margin: 0;
+}
+
+.card__container {
+  cursor: pointer;
+  perspective: 1400px;
+  transition: all 0.2s ease;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: 768px) {
+    .open & {
+      transform: translate(0%, -50%);
+    }
+  }
+}
+
+.card {
+  max-width: 400px;
+  max-height: 600px;
+  width: 80vw;
+  height: 120vw;
+  margin: auto;
+  perspective: 3000px;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+
+  &__panel {
+    border: 1px solid black;
+    transition: all 1s ease;
+    backface-visibility: visible;
+    transform-origin: left;
+    transform-style: preserve-3D;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 95%;
+    display: grid;
+    place-items: center;
+
+    &--front {
+      transform: rotate3d(0, 1, 0, 0deg);
+      backface-visibility: hidden;
+      background: $card-bg;
+      background-image: radial-gradient($card-bg-dark 15%, transparent 16%),
+        radial-gradient($card-bg-dark 15%, transparent 16%);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+      z-index: 10;
+      color: #fff;
+      display: grid;
+      grid-template-rows: 1fr 1fr 8fr;
+      grid-gap: 0.5em;
+      padding: 1em 0;
+
+      .open & {
+        transform: rotate3d(0, 1, 0, -170deg);
+        @media (min-width: 768px) {
+          transition-delay: $transition-delay;
+        }
+      }
+    }
+
+    &--inside-left {
+      background: #fff;
+      transform: rotate3d(0, 1, 0, 0deg);
+      z-index: 0;
+
+      .open & {
+        transform: rotate3d(0, 1, 0, -170deg);
+        @media (min-width: 768px) {
+          transition-delay: $transition-delay;
+        }
+      }
+    }
+    &--inside-right {
+      border-left: none;
+      background: #fff;
+      transform: rotate3d(0, 1, 0, 0deg);
+      z-index: -1;
+      align-content: center;
+    }
+  }
+}
+
+.open {
+  .confetti {
+    width: 15px;
+    height: 15px;
+    background-color: #f2d74e;
+    position: absolute;
+    left: 50%;
+    animation: confetti 5s ease-in-out -2s infinite;
+    transform-origin: left top;
+    z-index: 10;
+    @media (min-width: 768px) {
+      transition-delay: $transition-delay;
+    }
+  }
+  .confetti:nth-child(1) {
+    background-color: #f2d74e;
+    left: 10%;
+    animation-delay: 0;
+  }
+  .confetti:nth-child(2) {
+    background-color: #95c3de;
+    left: 20%;
+    animation-delay: -5s;
+  }
+  .confetti:nth-child(3) {
+    background-color: #ff9a91;
+    left: 30%;
+    animation-delay: -3s;
+  }
+  .confetti:nth-child(4) {
+    background-color: #f2d74e;
+    left: 40%;
+    animation-delay: -2.5s;
+  }
+  .confetti:nth-child(5) {
+    background-color: #95c3de;
+    left: 50%;
+    animation-delay: -4s;
+  }
+  .confetti:nth-child(6) {
+    background-color: #ff9a91;
+    left: 60%;
+    animation-delay: -6s;
+  }
+  .confetti:nth-child(7) {
+    background-color: #f2d74e;
+    left: 70%;
+    animation-delay: -1.5s;
+  }
+  .confetti:nth-child(8) {
+    background-color: #95c3de;
+    left: 80%;
+    animation-delay: -2s;
+  }
+  .confetti:nth-child(9) {
+    background-color: #ff9a91;
+    left: 90%;
+    animation-delay: -3.5s;
+  }
+  .confetti:nth-child(10) {
+    background-color: #f2d74e;
+    left: 100%;
+    animation-delay: -2.5s;
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
+  }
+  25% {
+    transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
+  }
+  50% {
+    transform: rotateZ(15deg) rotateY(720deg) translate(5vw, 60vh);
+  }
+  75% {
+    transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw, 80vh);
+  }
+  100% {
+    transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
+  }
+}
+
+// Baby
+$salmon: #e66266;
+$dark-salmon: #c70039;
+
+$skin: #fcbc9f;
+$darker-skin: darken($skin, 5%);
+$dark-brown: #3b1301;
+
+$eye-width: percentage(50 / 500);
+$eye-height: percentage(50 / 500);
+
+$nose-width: percentage(60 /500);
+$nose-height: percentage(50 / 500);
+
+$ear-width: percentage(35 / 500);
+$ear-height: percentage(65 / 500);
+
+$pacifier-color: #7e62e6;
+
+@keyframes blink {
+  0%,
+  96% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes soother {
+  50% {
+    transform: scale(1.1);
+    left: 0.5%;
+    top: 0.5%;
+  }
+}
+
+.baby {
+  width: 80%;
+  height: 70%;
+  position: relative;
+  margin: 0 auto;
+  opacity: 1;
+  transition: opacity 1.2s ease;
+  .open & {
+    opacity: 0;
+    @media (min-width: 768px) {
+      transition-delay: $transition-delay;
+    }
+  }
+  &__hair {
+    width: percentage(100/500);
+    padding-bottom: percentage(100/500);
+    border-top: 5px solid $dark-brown;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    top: 0;
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      border-top: 5px solid $dark-brown;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotate(-45deg);
+      top: 0;
+    }
+  }
+  &__face {
+    background: $skin;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 4fr 1fr 2fr;
+    grid-gap: 1em;
+  }
+  &__forehead {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 100%;
+  }
+  &__eye {
+    width: $eye-width;
+    padding-bottom: $eye-height;
+    background: $dark-brown;
+    border-radius: 50%;
+    position: relative;
+    animation: blink 3s alternate infinite;
+    &:before {
+      content: "";
+      background: white;
+      width: 20%;
+      padding-bottom: 20%;
+      border-radius: 50%;
+      position: absolute;
+      right: 20%;
+      top: 20%;
+    }
+  }
+  &__nose {
+    border-radius: 50%;
+    background: $darker-skin;
+    width: $nose-width;
+    padding-bottom: $nose-height;
+    margin: 0 auto;
+    border-bottom: 3px solid darken($darker-skin, 5%);
+  }
+  &__ear {
+    padding-bottom: $ear-height;
+    width: $ear-width;
+    background: $skin;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    &:before {
+      content: "";
+      width: 65%;
+      background: $darker-skin;
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+    }
+    &--left {
+      border-radius: 50% 0 0 50%;
+      left: -($ear-width) + 1%;
+      &:before {
+        border-radius: 50% 5% 5% 50%;
+        left: 15%;
+      }
+    }
+    &--right {
+      border-radius: 0 50% 50% 0;
+      right: -($ear-width) + 1%;
+      &:before {
+        border-radius: 5% 50% 50% 5%;
+        right: 15%;
+      }
+    }
+  }
+
+  &__pacifier {
+    width: 35%;
+    height: 70%;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: $pacifier-color;
+    border-bottom: 5px solid darken($pacifier-color, 5%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: soother 2.5s infinite;
+    align-self: center;
+    &:before {
+      content: "";
+      width: 40%;
+      padding-bottom: 35%;
+      background: darken($pacifier-color, 10%);
+      border-bottom: 5px solid darken($pacifier-color, 15%);
+      display: block;
+      border-radius: 50%;
+      margin: 1em auto;
+    }
+  }
+}
+
+</style>
+
+<script>
+  const openBtn = document.querySelector(".js-card-opener");
+  openBtn.onclick = function () {
+    document.body.classList.toggle("open");
+  };
+</script>
+  
+<p>Add video or a voice message to your card for free!</p>
+
+<div class="this-calls-for-some">
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+</div>
+
+<div class="card__container js-card-opener">
+  <div class="card">
+    <div class="card__panel card__panel--front">
+      <h1>Dude!</h1>
+      <h3>You're having a baby.</h3>
+      <div class="baby">
+        <div class="baby__hair"></div>
+        <div class="baby__face">
+          <div class="baby__forehead">
+            <div class="baby__eye"></div>
+            <div class="baby__eye"></div>
+          </div>
+          <div class="baby__nose"></div>
+          <div class="baby__ear baby__ear--left"></div>
+          <div class="baby__ear baby__ear--right"></div>
+          <div class="baby__pacifier"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="card__panel card__panel--inside-left">
+    </div>
+    <div class="card__panel card__panel--inside-right">
+      <p>Hope it's a good one!</p>
+      <p><small>(J/K she'll be a great one!)</small></p>
+      <p>❤️ Tammy</p>
+    </div>
+  </div>
+
+</div>
+</html>
