@@ -327,8 +327,10 @@
 }
  
 </style>
-
-<script>
+	
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	
+<script type="text/babel">
   const openBtn = document.querySelector(".js-card-opener");
   openBtn.onclick = function () {
     document.body.classList.toggle("open");
