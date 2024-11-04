@@ -55,7 +55,7 @@
             height: 100%;
             display: grid;
             place-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .card__panel--front {
@@ -101,22 +101,30 @@
             flex-direction: column;
             gap: 20px;
             align-items: center;
-            width: 100%;
+            width: 90%;
             transform-style: preserve-3d;
+            padding: 40px 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition-delay: 0s;
         }
 
         body.open .button-container {
             transform: rotate3d(0, 1, 0, 170deg);
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
 
         .media-button {
             background: #ff9a91;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border-radius: 25px;
             color: white;
             font-family: "Delius Swash Caps", cursive;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -124,9 +132,12 @@
             gap: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             direction: ltr;
-            width: 80%;
-            max-width: 250px;
+            width: 100%;
+            max-width: 220px;
             justify-content: flex-start;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .media-button:hover {
