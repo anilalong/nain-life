@@ -55,6 +55,7 @@
             height: 100%;
             display: grid;
             place-items: center;
+            box-shadow: 3px 3px 10px 15px #dddddd;
         }
 
         .card__panel--front {
@@ -150,7 +151,6 @@
     </style>
 </head>
 <body>
-    <p>Click card to open</p>
     <div class="this-calls-for-some">
         <div class="confetti"></div>
         <div class="confetti"></div>
@@ -176,13 +176,7 @@
             </div>
         </div>
     </div>
-
-    <script>
-        var openBtn = document.querySelector(".js-card-opener");
-        openBtn.onclick = function() {
-            document.body.classList.toggle("open");
-        };
-    </script>
+    
     <script>
         document.querySelectorAll('.confetti').forEach((confetti, index) => {
             const randomLeft = Math.random() * 100;
