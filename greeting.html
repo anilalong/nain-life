@@ -1,367 +1,331 @@
 <html>
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap");
-
-$transition-delay: 1s;
-$card-bg: #e66288;
-$card-bg-dark: darken($card-bg, 5%);
-
-body {
-  font-family: "Delius Swash Caps", cursive;
-  font-size: 20px;
-  padding-top:100px;
-  display: grid;
-  place-items: center;
-  background: #eee;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap");
+ body {
+	 font-family: "Delius Swash Caps", cursive;
+	 font-size: 20px;
+	 padding-top: 100px;
+	 display: grid;
+	 place-items: center;
+	 background: #eee;
+	 text-align: center;
 }
-
-h1,
-h3 {
-  margin: 0;
+ h1, h3 {
+	 margin: 0;
 }
-
-.card__container {
-  cursor: pointer;
-  perspective: 1400px;
-  transition: all 0.2s ease;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  @media (min-width: 768px) {
-    .open & {
-      transform: translate(0%, -50%);
-    }
-  }
+ .card__container {
+	 cursor: pointer;
+	 perspective: 1400px;
+	 transition: all 0.2s ease;
+	 position: absolute;
+	 left: 50%;
+	 top: 50%;
+	 transform: translate(-50%, -50%);
 }
-
-.card {
-  max-width: 400px;
-  max-height: 600px;
-  width: 80vw;
-  height: 120vw;
-  margin: auto;
-  perspective: 3000px;
-  transform-style: preserve-3d;
-  transition: all 1s ease;
-
-  &__panel {
-    border: 1px solid black;
-    transition: all 1s ease;
-    backface-visibility: visible;
-    transform-origin: left;
-    transform-style: preserve-3D;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 95%;
-    display: grid;
-    place-items: center;
-
-    &--front {
-      transform: rotate3d(0, 1, 0, 0deg);
-      backface-visibility: hidden;
-      background: $card-bg;
-      background-image: radial-gradient($card-bg-dark 15%, transparent 16%),
-        radial-gradient($card-bg-dark 15%, transparent 16%);
-      background-size: 60px 60px;
-      background-position: 0 0, 30px 30px;
-      z-index: 10;
-      color: #fff;
-      display: grid;
-      grid-template-rows: 1fr 1fr 8fr;
-      grid-gap: 0.5em;
-      padding: 1em 0;
-
-      .open & {
-        transform: rotate3d(0, 1, 0, -170deg);
-        @media (min-width: 768px) {
-          transition-delay: $transition-delay;
-        }
-      }
-    }
-
-    &--inside-left {
-      background: #fff;
-      transform: rotate3d(0, 1, 0, 0deg);
-      z-index: 0;
-
-      .open & {
-        transform: rotate3d(0, 1, 0, -170deg);
-        @media (min-width: 768px) {
-          transition-delay: $transition-delay;
-        }
-      }
-    }
-    &--inside-right {
-      border-left: none;
-      background: #fff;
-      transform: rotate3d(0, 1, 0, 0deg);
-      z-index: -1;
-      align-content: center;
-    }
-  }
+ @media (min-width: 768px) {
+	 .open .card__container {
+		 transform: translate(0%, -50%);
+	}
 }
-
-.open {
-  .confetti {
-    width: 15px;
-    height: 15px;
-    background-color: #f2d74e;
-    position: absolute;
-    left: 50%;
-    animation: confetti 5s ease-in-out -2s infinite;
-    transform-origin: left top;
-    z-index: 10;
-    @media (min-width: 768px) {
-      transition-delay: $transition-delay;
-    }
-  }
-  .confetti:nth-child(1) {
-    background-color: #f2d74e;
-    left: 10%;
-    animation-delay: 0;
-  }
-  .confetti:nth-child(2) {
-    background-color: #95c3de;
-    left: 20%;
-    animation-delay: -5s;
-  }
-  .confetti:nth-child(3) {
-    background-color: #ff9a91;
-    left: 30%;
-    animation-delay: -3s;
-  }
-  .confetti:nth-child(4) {
-    background-color: #f2d74e;
-    left: 40%;
-    animation-delay: -2.5s;
-  }
-  .confetti:nth-child(5) {
-    background-color: #95c3de;
-    left: 50%;
-    animation-delay: -4s;
-  }
-  .confetti:nth-child(6) {
-    background-color: #ff9a91;
-    left: 60%;
-    animation-delay: -6s;
-  }
-  .confetti:nth-child(7) {
-    background-color: #f2d74e;
-    left: 70%;
-    animation-delay: -1.5s;
-  }
-  .confetti:nth-child(8) {
-    background-color: #95c3de;
-    left: 80%;
-    animation-delay: -2s;
-  }
-  .confetti:nth-child(9) {
-    background-color: #ff9a91;
-    left: 90%;
-    animation-delay: -3.5s;
-  }
-  .confetti:nth-child(10) {
-    background-color: #f2d74e;
-    left: 100%;
-    animation-delay: -2.5s;
-  }
+ .card {
+	 max-width: 400px;
+	 max-height: 600px;
+	 width: 80vw;
+	 height: 120vw;
+	 margin: auto;
+	 perspective: 3000px;
+	 transform-style: preserve-3d;
+	 transition: all 1s ease;
 }
-
-@keyframes confetti {
-  0% {
-    transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
-  }
-  25% {
-    transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
-  }
-  50% {
-    transform: rotateZ(15deg) rotateY(720deg) translate(5vw, 60vh);
-  }
-  75% {
-    transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw, 80vh);
-  }
-  100% {
-    transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
-  }
+ .card__panel {
+	 border: 1px solid black;
+	 transition: all 1s ease;
+	 backface-visibility: visible;
+	 transform-origin: left;
+	 transform-style: preserve-3D;
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 width: 100%;
+	 height: 95%;
+	 display: grid;
+	 place-items: center;
 }
-
-// Baby
-$salmon: #e66266;
-$dark-salmon: #c70039;
-
-$skin: #fcbc9f;
-$darker-skin: darken($skin, 5%);
-$dark-brown: #3b1301;
-
-$eye-width: percentage(50 / 500);
-$eye-height: percentage(50 / 500);
-
-$nose-width: percentage(60 /500);
-$nose-height: percentage(50 / 500);
-
-$ear-width: percentage(35 / 500);
-$ear-height: percentage(65 / 500);
-
-$pacifier-color: #7e62e6;
-
-@keyframes blink {
-  0%,
-  96% {
-    transform: scaleY(1);
-  }
-  100% {
-    transform: scaleY(0.1);
-  }
+ .card__panel--front {
+	 transform: rotate3d(0, 1, 0, 0deg);
+	 backface-visibility: hidden;
+	 background: #e66288;
+	 background-image: radial-gradient(#e24c77 15%, transparent 16%), radial-gradient(#e24c77 15%, transparent 16%);
+	 background-size: 60px 60px;
+	 background-position: 0 0, 30px 30px;
+	 z-index: 10;
+	 color: #fff;
+	 display: grid;
+	 grid-template-rows: 1fr 1fr 8fr;
+	 grid-gap: 0.5em;
+	 padding: 1em 0;
 }
-
-@keyframes soother {
-  50% {
-    transform: scale(1.1);
-    left: 0.5%;
-    top: 0.5%;
-  }
+ .open .card__panel--front {
+	 transform: rotate3d(0, 1, 0, -170deg);
 }
-
-.baby {
-  width: 80%;
-  height: 70%;
-  position: relative;
-  margin: 0 auto;
-  opacity: 1;
-  transition: opacity 1.2s ease;
-  .open & {
-    opacity: 0;
-    @media (min-width: 768px) {
-      transition-delay: $transition-delay;
-    }
-  }
-  &__hair {
-    width: percentage(100/500);
-    padding-bottom: percentage(100/500);
-    border-top: 5px solid $dark-brown;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%) rotate(-45deg);
-    top: 0;
-    &::after {
-      content: "";
-      width: 100%;
-      height: 100%;
-      border-top: 5px solid $dark-brown;
-      border-top-left-radius: 50%;
-      border-top-right-radius: 50%;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%) rotate(-45deg);
-      top: 0;
-    }
-  }
-  &__face {
-    background: $skin;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-rows: 4fr 1fr 2fr;
-    grid-gap: 1em;
-  }
-  &__forehead {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    width: 100%;
-  }
-  &__eye {
-    width: $eye-width;
-    padding-bottom: $eye-height;
-    background: $dark-brown;
-    border-radius: 50%;
-    position: relative;
-    animation: blink 3s alternate infinite;
-    &:before {
-      content: "";
-      background: white;
-      width: 20%;
-      padding-bottom: 20%;
-      border-radius: 50%;
-      position: absolute;
-      right: 20%;
-      top: 20%;
-    }
-  }
-  &__nose {
-    border-radius: 50%;
-    background: $darker-skin;
-    width: $nose-width;
-    padding-bottom: $nose-height;
-    margin: 0 auto;
-    border-bottom: 3px solid darken($darker-skin, 5%);
-  }
-  &__ear {
-    padding-bottom: $ear-height;
-    width: $ear-width;
-    background: $skin;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    &:before {
-      content: "";
-      width: 65%;
-      background: $darker-skin;
-      position: absolute;
-      top: 10%;
-      bottom: 10%;
-    }
-    &--left {
-      border-radius: 50% 0 0 50%;
-      left: -($ear-width) + 1%;
-      &:before {
-        border-radius: 50% 5% 5% 50%;
-        left: 15%;
-      }
-    }
-    &--right {
-      border-radius: 0 50% 50% 0;
-      right: -($ear-width) + 1%;
-      &:before {
-        border-radius: 5% 50% 50% 5%;
-        right: 15%;
-      }
-    }
-  }
-
-  &__pacifier {
-    width: 35%;
-    height: 70%;
-    margin: 0 auto;
-    border-radius: 50%;
-    background: $pacifier-color;
-    border-bottom: 5px solid darken($pacifier-color, 5%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: soother 2.5s infinite;
-    align-self: center;
-    &:before {
-      content: "";
-      width: 40%;
-      padding-bottom: 35%;
-      background: darken($pacifier-color, 10%);
-      border-bottom: 5px solid darken($pacifier-color, 15%);
-      display: block;
-      border-radius: 50%;
-      margin: 1em auto;
-    }
-  }
+ @media (min-width: 768px) {
+	 .open .card__panel--front {
+		 transition-delay: 1s;
+	}
 }
-
+ .card__panel--inside-left {
+	 background: #fff;
+	 transform: rotate3d(0, 1, 0, 0deg);
+	 z-index: 0;
+}
+ .open .card__panel--inside-left {
+	 transform: rotate3d(0, 1, 0, -170deg);
+}
+ @media (min-width: 768px) {
+	 .open .card__panel--inside-left {
+		 transition-delay: 1s;
+	}
+}
+ .card__panel--inside-right {
+	 border-left: none;
+	 background: #fff;
+	 transform: rotate3d(0, 1, 0, 0deg);
+	 z-index: -1;
+	 align-content: center;
+}
+ .open .confetti {
+	 width: 15px;
+	 height: 15px;
+	 background-color: #f2d74e;
+	 position: absolute;
+	 left: 50%;
+	 animation: confetti 5s ease-in-out -2s infinite;
+	 transform-origin: left top;
+	 z-index: 10;
+}
+ @media (min-width: 768px) {
+	 .open .confetti {
+		 transition-delay: 1s;
+	}
+}
+ .open .confetti:nth-child(1) {
+	 background-color: #f2d74e;
+	 left: 10%;
+	 animation-delay: 0;
+}
+ .open .confetti:nth-child(2) {
+	 background-color: #95c3de;
+	 left: 20%;
+	 animation-delay: -5s;
+}
+ .open .confetti:nth-child(3) {
+	 background-color: #ff9a91;
+	 left: 30%;
+	 animation-delay: -3s;
+}
+ .open .confetti:nth-child(4) {
+	 background-color: #f2d74e;
+	 left: 40%;
+	 animation-delay: -2.5s;
+}
+ .open .confetti:nth-child(5) {
+	 background-color: #95c3de;
+	 left: 50%;
+	 animation-delay: -4s;
+}
+ .open .confetti:nth-child(6) {
+	 background-color: #ff9a91;
+	 left: 60%;
+	 animation-delay: -6s;
+}
+ .open .confetti:nth-child(7) {
+	 background-color: #f2d74e;
+	 left: 70%;
+	 animation-delay: -1.5s;
+}
+ .open .confetti:nth-child(8) {
+	 background-color: #95c3de;
+	 left: 80%;
+	 animation-delay: -2s;
+}
+ .open .confetti:nth-child(9) {
+	 background-color: #ff9a91;
+	 left: 90%;
+	 animation-delay: -3.5s;
+}
+ .open .confetti:nth-child(10) {
+	 background-color: #f2d74e;
+	 left: 100%;
+	 animation-delay: -2.5s;
+}
+ @keyframes confetti {
+	 0% {
+		 transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
+	}
+	 25% {
+		 transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
+	}
+	 50% {
+		 transform: rotateZ(15deg) rotateY(720deg) translate(5vw, 60vh);
+	}
+	 75% {
+		 transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw, 80vh);
+	}
+	 100% {
+		 transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
+	}
+}
+ @keyframes blink {
+	 0%, 96% {
+		 transform: scaleY(1);
+	}
+	 100% {
+		 transform: scaleY(0.1);
+	}
+}
+ @keyframes soother {
+	 50% {
+		 transform: scale(1.1);
+		 left: 0.5%;
+		 top: 0.5%;
+	}
+}
+ .baby {
+	 width: 80%;
+	 height: 70%;
+	 position: relative;
+	 margin: 0 auto;
+	 opacity: 1;
+	 transition: opacity 1.2s ease;
+}
+ .open .baby {
+	 opacity: 0;
+}
+ @media (min-width: 768px) {
+	 .open .baby {
+		 transition-delay: 1s;
+	}
+}
+ .baby__hair {
+	 width: 20%;
+	 padding-bottom: 20%;
+	 border-top: 5px solid #3b1301;
+	 border-top-left-radius: 50%;
+	 border-top-right-radius: 50%;
+	 position: absolute;
+	 left: 50%;
+	 transform: translateX(-50%) rotate(-45deg);
+	 top: 0;
+}
+ .baby__hair::after {
+	 content: "";
+	 width: 100%;
+	 height: 100%;
+	 border-top: 5px solid #3b1301;
+	 border-top-left-radius: 50%;
+	 border-top-right-radius: 50%;
+	 position: absolute;
+	 left: 50%;
+	 transform: translateX(-50%) rotate(-45deg);
+	 top: 0;
+}
+ .baby__face {
+	 background: #fcbc9f;
+	 border-radius: 50%;
+	 width: 100%;
+	 height: 100%;
+	 display: grid;
+	 grid-template-rows: 4fr 1fr 2fr;
+	 grid-gap: 1em;
+}
+ .baby__forehead {
+	 display: flex;
+	 justify-content: space-evenly;
+	 align-items: flex-end;
+	 width: 100%;
+}
+ .baby__eye {
+	 width: 10%;
+	 padding-bottom: 10%;
+	 background: #3b1301;
+	 border-radius: 50%;
+	 position: relative;
+	 animation: blink 3s alternate infinite;
+}
+ .baby__eye:before {
+	 content: "";
+	 background: white;
+	 width: 20%;
+	 padding-bottom: 20%;
+	 border-radius: 50%;
+	 position: absolute;
+	 right: 20%;
+	 top: 20%;
+}
+ .baby__nose {
+	 border-radius: 50%;
+	 background: #fbab86;
+	 width: 12%;
+	 padding-bottom: 10%;
+	 margin: 0 auto;
+	 border-bottom: 3px solid #fa996e;
+}
+ .baby__ear {
+	 padding-bottom: 13%;
+	 width: 7%;
+	 background: #fcbc9f;
+	 position: absolute;
+	 top: 50%;
+	 transform: translateY(-50%);
+}
+ .baby__ear:before {
+	 content: "";
+	 width: 65%;
+	 background: #fbab86;
+	 position: absolute;
+	 top: 10%;
+	 bottom: 10%;
+}
+ .baby__ear--left {
+	 border-radius: 50% 0 0 50%;
+	 left: -6%;
+}
+ .baby__ear--left:before {
+	 border-radius: 50% 5% 5% 50%;
+	 left: 15%;
+}
+ .baby__ear--right {
+	 border-radius: 0 50% 50% 0;
+	 right: -6%;
+}
+ .baby__ear--right:before {
+	 border-radius: 5% 50% 50% 5%;
+	 right: 15%;
+}
+ .baby__pacifier {
+	 width: 35%;
+	 height: 70%;
+	 margin: 0 auto;
+	 border-radius: 50%;
+	 background: #7e62e6;
+	 border-bottom: 5px solid #6c4ce2;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 animation: soother 2.5s infinite;
+	 align-self: center;
+}
+ .baby__pacifier:before {
+	 content: "";
+	 width: 40%;
+	 padding-bottom: 35%;
+	 background: #5a36df;
+	 border-bottom: 5px solid #4923d9;
+	 display: block;
+	 border-radius: 50%;
+	 margin: 1em auto;
+}
+ 
 </style>
 
 <script>
